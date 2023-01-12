@@ -17,7 +17,7 @@ task(
     }
 
     const addressesFile =
-      __dirname + "/../frontend/contracts/contract-address.json";
+      __dirname + "/../client/contracts/contract-address.json";
 
     if (!fs.existsSync(addressesFile)) {
       console.error("You need to deploy your contract first");

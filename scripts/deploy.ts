@@ -40,8 +40,7 @@ async function main() {
 function saveFrontendFiles(token: any, forwarder: any) {
   const fs = require("fs");
   const directories = [
-    __dirname + "/../frontend/contracts",
-    __dirname + "/../backend/contracts",
+    __dirname + "/../client/contracts",
   ];
 
   directories.forEach((contractsDir) => {
