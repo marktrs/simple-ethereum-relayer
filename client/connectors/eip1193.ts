@@ -11,6 +11,7 @@ class Eip1193BridgeWithoutAccounts extends Eip1193Bridge {
       request.method === "eth_requestAccounts" ||
       request.method === "eth_accounts"
     )
+      debugger
       return Promise.resolve([]);
     return super.request(request);
   }

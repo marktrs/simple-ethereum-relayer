@@ -9,6 +9,9 @@ const config: HardhatUserConfig = {
       chainId: 1337,
     },
   },
+  gasReporter: {
+    enabled: true,
+  },
 };
 
 export default config;

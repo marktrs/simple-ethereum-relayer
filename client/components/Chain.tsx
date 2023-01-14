@@ -1,6 +1,5 @@
 import { Text } from "@nextui-org/react";
 import type { Web3ReactHooks } from "@web3-react/core";
-import React from "react";
 import { CHAINS } from "../blockchain/chains";
 
 export function Chain({
@@ -15,7 +14,7 @@ export function Chain({
   if (name) {
     return (
       <div>
-        <Text b>Chain Id</Text>
+        <Text b>Chain ID</Text>
         <Text>
           {name} ({chainId})
         </Text>

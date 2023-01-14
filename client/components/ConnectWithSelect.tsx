@@ -19,25 +19,6 @@ function ChainSelect({
   displayDefault: boolean;
   chainIds: number[];
 }) {
-  // const menuItems: Object[] = [];
-  // chainIds.forEach((item) => {
-  //   menuItems.push({
-  //     key: item,
-  //     value: CHAINS[item]?.name ?? item,
-  //   });
-  // });
-
-  // const [selected, setSelected] = React.useState(new Set([chainId]));
-
-  // const selectedValue = React.useMemo(
-  //   () => Array.from(selected).join(", ").replaceAll("_", " "),
-  //   [selected]
-  // );
-
-  // const onSelected = () => {
-  //   switchChain?.(Number(selected));
-  // };
-
   return (
     <>
       <select
@@ -54,22 +35,6 @@ function ChainSelect({
           </option>
         ))}
       </select>
-      {/* <Dropdown>
-        <Dropdown.Button flat css={{ tt: "capitalize" }}>
-          {selectedValue}
-        </Dropdown.Button>
-        <Dropdown.Menu
-          aria-label="Single selection actions"
-          color="default"
-          disallowEmptySelection
-          selectionMode="single"
-          selectedKeys={selected}
-          onSelectionChange={onSelected}
-          items={menuItems}
-        >
-          {(item) => <Dropdown.Item key={item.key}>{item.value}</Dropdown.Item>}
-        </Dropdown.Menu>
-      </Dropdown> */}
     </>
   );
 }
@@ -87,7 +52,7 @@ export function ConnectWithSelect({
   isActivating: ReturnType<Web3ReactHooks["useIsActivating"]>;
   isActive: ReturnType<Web3ReactHooks["useIsActive"]>;
   error: Error | undefined;
-  setError: (error: Error | undefined) => void;
+  setError: React.Dispatch<React.SetStateAction<undefined>>;
 }) {
   const isNetwork = connector instanceof Network;
   const displayDefault = !isNetwork;

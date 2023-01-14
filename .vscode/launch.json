@@ -26,6 +26,13 @@
         "uriFormat": "%s",
         "action": "debugWithChrome"
       }
+    },
+    {
+      "name": "Hardhat debug",
+      "type": "node-terminal",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "command": "yarn run test"
     }
   ]
 }

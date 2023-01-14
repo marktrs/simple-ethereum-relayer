@@ -18,7 +18,7 @@ interface Props {
   isActivating: ReturnType<Web3ReactHooks["useIsActivating"]>;
   isActive: ReturnType<Web3ReactHooks["useIsActive"]>;
   error: Error | undefined;
-  setError: (error: Error | undefined) => void;
+  setError: React.Dispatch<React.SetStateAction<undefined>>;
   ENSNames: ReturnType<Web3ReactHooks["useENSNames"]>;
   provider?: ReturnType<Web3ReactHooks["useProvider"]>;
   accounts?: string[];
@@ -39,7 +39,7 @@ export function ConnectorCard({
     <>
       <Card>
         <Card.Header>
-          <Grid.Container justify="space-between">
+          <Grid.Container justify="space-between" gap={2}>
             <Grid>
               <Text b>{getName(connector)}</Text>
             </Grid>

@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { hooks, metaMask } from "../../connectors/metaMask";
 import { ConnectorCard } from "../Card";
-import React from "react";
 
 const {
   useChainId,

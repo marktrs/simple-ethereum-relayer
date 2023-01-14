@@ -21,11 +21,11 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Forwarder = await ethers.getContractFactory("MinimalForwarder");
+  const Forwarder = await ethers.getContractFactory("Forwarder");
   const forwarder = await Forwarder.deploy();
   await forwarder.deployed();
 
-  console.log("MinimalForwarder address:", forwarder.address);
+  console.log("Forwarder address:", forwarder.address);
 
   const Token = await ethers.getContractFactory("TargetToken");
   const token = await Token.deploy(1000, forwarder.address);
@@ -66,9 +66,9 @@ function saveFrontendFiles(token: any, forwarder: any) {
       JSON.stringify(TokenArtifact, null, 2)
     );
 
-    const ForwarderArtifact = artifacts.readArtifactSync("MinimalForwarder");
+    const ForwarderArtifact = artifacts.readArtifactSync("Forwarder");
     fs.writeFileSync(
-      contractsDir + "/MinimalForwarder.json",
+      contractsDir + "/Forwarder.json",
       JSON.stringify(ForwarderArtifact, null, 2)
     );
   });

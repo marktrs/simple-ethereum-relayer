@@ -18,7 +18,7 @@ export default function Home() {
         <Spacer y={3} />
         <ProviderExample />
         <Grid.Container gap={2}>
-          <Grid xs={12} md={4}>
+          <Grid xs={12} md={6}>
             <MetaMaskCard />
           </Grid>
           <Grid xs={12} md={6}>

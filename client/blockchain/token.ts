@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { appConfig } from "../configs/app.config";
 import contractAddress from "../contracts/contract-address.json";
-import ForwarderArtifact from "../contracts/MinimalForwarder.json";
+import ForwarderArtifact from "../contracts/Forwarder.json";
 import TokenArtifact from "../contracts/TargetToken.json";
 import { signMetaTxRequest } from "./signer";
 
@@ -10,16 +10,17 @@ const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
 export const transferTokensMeta = async (
   receiver: string,
   amount: string,
-  ethProvider: any
+  provider: any
 ) => {
   let request;
-  const userProvider = new ethers.providers.Web3Provider(ethProvider);
 
+  const userProvider = new ethers.providers.Web3Provider(provider);
   const forwarder = new ethers.Contract(
     contractAddress.Forwarder,
     ForwarderArtifact.abi,
     userProvider.getSigner(0)
   );
+
   const token = new ethers.Contract(
     contractAddress.Token,
     TokenArtifact.abi,
@@ -54,14 +55,13 @@ export const transferTokensMeta = async (
   await fetch(relayerURL, {
     method: "POST",
     body: JSON.stringify(request),
-    headers: { "Content-Type": "application/json" },
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
     mode: "no-cors",
   });
 };
 
-export const getTokenBalance = async (ethProvider: any) => {
-  await ethProvider.request({ method: "eth_requestAccounts" });
-  const userProvider = new ethers.providers.Web3Provider(ethProvider);
+export const getTokenBalance = async (provider: any) => {
+  const userProvider = new ethers.providers.Web3Provider(provider);
   const token = new ethers.Contract(
     contractAddress.Token,
     TokenArtifact.abi,
@@ -70,7 +70,6 @@ export const getTokenBalance = async (ethProvider: any) => {
   const signer = userProvider.getSigner(0);
   const signerAddress = await signer.getAddress();
   const balance = await token.balanceOf(signerAddress);
-  console.log(ethers.utils.formatUnits(balance, 0));
 
   return ethers.utils.formatUnits(balance, 0);
 };
