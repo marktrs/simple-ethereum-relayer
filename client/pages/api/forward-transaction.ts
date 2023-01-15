@@ -30,8 +30,14 @@ router.put(async (_, res: NextApiResponse) => {
     .search()
     .returnAll();
 
+  if (transactions.length == 0) {
+    res.status(200).json({
+      message: "no transaction to execute",
+    });
+  }
   const requests = transactions.map((tx) => JSON.parse(tx.request));
   const signatures = transactions.map((tx) => tx.signature);
+  const ids = transactions.map((tx) => tx.entityId);
 
   try {
     await forwarderContract().batchExecute(requests, signatures, {
@@ -40,11 +46,11 @@ router.put(async (_, res: NextApiResponse) => {
   } catch (error) {
     res.status(500).json({
       message: `failed to forward transaction`,
-      error,
     });
     throw error;
   }
 
+  await transactionRepository.remove(ids);
   res.status(200).json({
     message: `${transactions.length} transactions were submitted to the network`,
   });
