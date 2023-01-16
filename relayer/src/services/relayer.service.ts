@@ -37,16 +37,26 @@ export class RelayerService {
     }
 
     this.logger.debug(`Found ${txs.length} transactions to process`);
-
     const requests = txs.map((tx) => JSON.parse(tx.request));
     const signatures = txs.map((tx) => tx.signature);
     const ids = txs.map((tx) => tx.entityId);
+
+    let gasUsage: number;
+    const { gasLimit } = this.relayerConfig;
+
+    gasUsage = await this.forwarderContract.estimateGas(requests, signatures);
+    while (gasUsage > parseInt(gasLimit)) {
+      ids.pop();
+      requests.pop();
+      signatures.pop();
+      gasUsage = await this.forwarderContract.estimateGas(requests, signatures);
+    }
 
     await this.forwarderContract.batchExecute(requests, signatures);
     await this.transactionService.removeTransactions(ids);
 
     this.logger.debug(
-      `Executed ${txs.length} transactions complete, Stopping batch process ...`,
+      `Executed ${ids.length} transactions complete, Stopping batch process ...`,
     );
   }
 }

@@ -25,6 +25,15 @@ export class ForwarderContract {
     );
   }
 
+  async estimateGas(requests: string[], signatures: string[]): Promise<number> {
+    const gasUsage = await this.forwarder.estimateGas.batchExecute(
+      requests,
+      signatures,
+    );
+
+    return gasUsage.toNumber();
+  }
+
   async verify({ request, signature }: Partial<Transaction>): Promise<boolean> {
     return this.forwarder.verify(request, signature);
   }

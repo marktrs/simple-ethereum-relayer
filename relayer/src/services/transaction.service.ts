@@ -18,6 +18,14 @@ export class TransactionService {
     return this.transactionRepository.search().returnAll();
   }
 
+  async findBySignature(signature: string): Promise<Transaction> {
+    return this.transactionRepository
+      .search()
+      .where('signature')
+      .match(signature)
+      .return.first();
+  }
+
   async addTransaction({
     request,
     signature,

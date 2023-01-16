@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   HttpCode,
+  HttpException,
   HttpStatus,
   Post,
 } from '@nestjs/common';
@@ -28,12 +29,28 @@ export class RelayerController {
   @HttpCode(HttpStatus.CREATED)
   async addTransaction(@Body() req: AddTransactionDto): Promise<any> {
     const { request, signature } = req;
-    const isTxValid = await this.forwarder.verify({ request, signature });
+    const isExist = await this.transaction.findBySignature(signature);
+    if (isExist) {
+      throw new HttpException(
+        {
+          message: {
+            error: 'transaction already in pending queue',
+          },
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
 
+    const isTxValid = await this.forwarder.verify({ request, signature });
     if (!isTxValid) {
-      return {
-        message: 'invalid signature or request',
-      };
+      throw new HttpException(
+        {
+          message: {
+            error: 'invalid signature or request',
+          },
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     const id = await this.transaction.addTransaction({ request, signature });
