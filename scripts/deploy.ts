@@ -34,13 +34,14 @@ async function main() {
   console.log("Target Token address:", token.address);
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token, forwarder);
+  exportArtifactFiles(token, forwarder);
 }
 
-function saveFrontendFiles(token: any, forwarder: any) {
+function exportArtifactFiles(token: any, forwarder: any) {
   const fs = require("fs");
   const directories = [
     __dirname + "/../client/contracts",
+    __dirname + "/../relayer/src/contracts",
   ];
 
   directories.forEach((contractsDir) => {

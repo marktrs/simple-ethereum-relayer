@@ -10,9 +10,9 @@ import {
 } from "@nextui-org/react";
 import React, { useEffect, useState } from "react";
 import { getTokenBalance, transferTokensMeta } from "../blockchain/token";
+import { hooks } from "../connectors/metaMask";
 import contractAddress from "../contracts/contract-address.json";
 import TokenArtifact from "../contracts/TargetToken.json";
-import { hooks, metaMask } from "../connectors/metaMask";
 
 const { useProvider } = hooks;
 
@@ -30,7 +30,7 @@ export default function TokenCard(): React.ReactElement {
     setValue: setAmount,
     reset: clearAmount,
     bindings: amountBinding,
-  } = useInput("100");
+  } = useInput("1");
 
   const [balance, setBalance] = useState(0);
   const [contractFound, setContractFound] = useState(false);

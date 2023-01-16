@@ -54,9 +54,8 @@ export const transferTokensMeta = async (
 
   await fetch(relayerURL, {
     method: "POST",
-    body: JSON.stringify(request),
     headers: { Accept: "application/json", "Content-Type": "application/json" },
-    mode: "no-cors",
+    body: JSON.stringify(request),
   });
 };
 

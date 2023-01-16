@@ -14,5 +14,5 @@ export const appConfig: IAppConfig = {
   redisURL: process.env.REDIS_URL || "redis://127.0.0.1:6379",
   providerURL: process.env.PROVIDER_URL || "http://127.0.0.1:8545",
   relayerURL:
-    process.env.RELAYER_URL || "http://127.0.0.1:3000/api/forward-transaction",
+    process.env.RELAYER_URL || "http://127.0.0.1:3001/relayer/forward-transaction",
 };
