@@ -3,7 +3,7 @@ import { Client, Repository } from 'redis-om';
 import {
   Transaction,
   transactionSchema,
-} from 'src/entities/transaction.entity';
+} from '../entities/transaction.entity';
 
 @Injectable()
 export class TransactionService {

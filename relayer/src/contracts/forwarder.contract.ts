@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Contract, ethers } from 'ethers';
-import { IRelayerConfig } from 'src/configs/relayer.config';
-import { Transaction } from 'src/entities/transaction.entity';
+import { IRelayerConfig } from '../configs/relayer.config';
+import { Transaction } from '../entities/transaction.entity';
 import contractAddress from './contract-address.json';
 import ForwarderArtifact from './Forwarder.json';
 

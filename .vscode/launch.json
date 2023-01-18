@@ -9,11 +9,18 @@
       "command": "yarn run dev"
     },
     {
-      "name": "Nest.js: debug server-side",
+      "name": "Nest.js: run with breaking point",
       "type": "node-terminal",
       "request": "launch",
       "cwd": "${workspaceFolder}/relayer",
       "command": "yarn start:dev"
+    },
+    {
+      "name": "Nest.js: test with breaking point",
+      "type": "node-terminal",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/relayer",
+      "command": "yarn test"
     },
     {
       "name": "Next.js: debug client-side",

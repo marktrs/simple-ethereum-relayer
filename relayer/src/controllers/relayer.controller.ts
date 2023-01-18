@@ -7,10 +7,10 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import { ForwarderContract } from 'src/contracts/forwarder.contract';
-import { AddTransactionDto } from 'src/dtos/transaction.dto';
-import { Transaction } from 'src/entities/transaction.entity';
-import { TransactionService } from 'src/services/transaction.service';
+import { ForwarderContract } from '../contracts/forwarder.contract';
+import { AddTransactionDto } from '../dtos/transaction.dto';
+import { Transaction } from '../entities/transaction.entity';
+import { TransactionService } from '../services/transaction.service';
 
 @Controller('relayer')
 export class RelayerController {

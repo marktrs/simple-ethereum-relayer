@@ -19,9 +19,10 @@
     "noFallthroughCasesInSwitch": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["reflect-metadata", "jest"]
   },
-  "include": ["src/*.ts"],
+  "include": ["src/*.ts", "src/**/*"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "compilerOptions": {

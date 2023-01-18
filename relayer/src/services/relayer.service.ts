@@ -2,8 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
-import { IRelayerConfig } from 'src/configs/relayer.config';
-import { ForwarderContract } from 'src/contracts/forwarder.contract';
+import { IRelayerConfig } from '../configs/relayer.config';
+import { ForwarderContract } from '../contracts/forwarder.contract';
 import { TransactionService } from './transaction.service';
 
 @Injectable()
