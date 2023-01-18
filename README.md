@@ -57,13 +57,19 @@ Wait till these containers started
 2. Wait till TGT Token box is '**Connected**'
 3. Click **Send** button
 4. On metamask pop-up ensure your transaction info is correct then click **Sign** button
-5. Look up for relayer-provider batch process using
+5. Look up for transaction in batch
+
+```
+curl --location --request GET 'http://localhost:3001/relayer/transactions'
+```
+
+6. View relayer-provider log using
 
 ```
 docker logs -f relayer-provider
 ```
 
-6. Wait till your transaction is executed and the hardhat network console should have following logs show up
+7. Wait till your transaction is executed and the hardhat network console should have following logs show up
 
 ```
   Contract call:       Forwarder#batchExecute
