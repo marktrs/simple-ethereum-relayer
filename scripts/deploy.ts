@@ -40,6 +40,7 @@ async function main() {
 function exportArtifactFiles(token: any, forwarder: any) {
   const fs = require("fs");
   const directories = [
+    __dirname + "/../deployed",
     __dirname + "/../client/contracts",
     __dirname + "/../relayer/src/contracts",
   ];
@@ -56,7 +57,7 @@ function exportArtifactFiles(token: any, forwarder: any) {
           Token: token.address,
           Forwarder: forwarder.address,
         },
-        undefined,
+        null,
         2
       )
     );

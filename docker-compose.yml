@@ -1,9 +1,43 @@
 version: "3.8"
 
 services:
+  # relayer-evm:
+  #   container_name: relayer-evm
+  #   image: relayer_evm_i
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8545:8545"
+  #   tty: true
+  #   volumes:
+  #     - ./deployed:/app/deployed
   redis-stack:
     container_name: redis-stack
     image: "redis/redis-stack:latest"
     ports:
       - "6379:6379"
       - "8001:8001"
+  relayer-provider:
+    container_name: relayer-provider
+    image: relayer_provider_i
+    build:
+      context: ./relayer
+      dockerfile: Dockerfile
+    env_file:
+      - ./relayer/.env.local
+    ports:
+      - 3001:3001
+    depends_on:
+      - redis-stack
+  relayer-client:
+    container_name: relayer-client
+    image: relayer_client_i
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    env_file:
+      - ./client/.env.local
+    ports:
+      - "3000:3000"
+    tty: true

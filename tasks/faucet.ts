@@ -16,11 +16,12 @@ task(
       );
     }
 
-    const addressesFile =
-      __dirname + "/../client/contracts/contract-address.json";
+    const addressesFile = __dirname + "/../deployed/contract-address.json";
 
     if (!fs.existsSync(addressesFile)) {
-      console.error("You need to deploy your contract first");
+      console.error(
+        "File not found:contract-address.json, You need to deploy your contract first"
+      );
       return;
     }
 
@@ -28,7 +29,9 @@ task(
     const address = JSON.parse(addressJson.toString());
 
     if ((await ethers.provider.getCode(address.Token)) === "0x") {
-      console.error("You need to deploy your contract first");
+      console.error(
+        "ethers.provider.getCode='0x', You need to deploy your contract first"
+      );
       return;
     }
 

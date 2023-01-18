@@ -5,11 +5,11 @@
   "author": "marktrs <traisak.tra@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "evm": "hardhat node",
+    "evm": "hardhat node --config hardhat.config.ts",
     "compile": "hardhat compile",
     "test": "hardhat test",
-    "deploy-local": "hardhat run scripts/deploy.ts --network localhost",
-    "faucet": "hardhat --network localhost faucet"
+    "deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "faucet": "hardhat faucet --network localhost"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.4.7",

@@ -17,6 +17,6 @@ export default registerAs(
     gasLimit: process.env.APP_GAS_LIMIT || '2500000',
     redisURL: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     providerURL: process.env.PROVIDER_URL || 'http://127.0.0.1:8545',
-    cronTime: process.env.RELAYER_CRON_TIME || '10 * * * * *', // default is execute every 10 seconds
+    cronTime: process.env.RELAYER_CRON_TIME || '3 * * * * *', // default is execute every 3 seconds
   }),
 );

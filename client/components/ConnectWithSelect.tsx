@@ -153,7 +153,7 @@ export function ConnectWithSelect({
         )}
         <div style={{ marginBottom: "1rem" }} />
         <Button
-          onClick={() => {
+          onPress={() => {
             if (connector?.deactivate) {
               void connector.deactivate();
             } else {
